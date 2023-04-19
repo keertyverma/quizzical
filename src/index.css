@@ -11,9 +11,32 @@ html {
 }
 
 body {
-  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-family: Inter, sans-serif;
   font-weight: 500;
   line-height: 1.5;
   background-color: #f5f7fb;
   color: #293264;
+}
+
+main {
+  position: relative;
+  min-height: 100vh;
+}
+
+.btn-primary {
+  font-size: 1.6rem;
+  text-align: center;
+  background: #4d5b9e;
+  color: #f5f7fb;
+  border-radius: 15px;
+  border: 0;
+  padding: 1.6rem 5rem;
+  margin: 2.5rem;
+  letter-spacing: 0.1rem;
+  outline: 0;
+  cursor: pointer;
+}
+
+.btn-primary:active {
+  box-shadow: 3px 3px 10px 0 #868fb8;
 }
