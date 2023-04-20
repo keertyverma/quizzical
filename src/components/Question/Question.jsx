@@ -3,41 +3,64 @@ import { decode } from "html-entities";
 import "./Question.css";
 
 export default function Question({
+  id,
   question,
   correctAnswer,
   incorrectAnswers,
+  selectedAnswer,
+  showAnswer,
+  handleSelectAnswer,
 }) {
-  const reshuffleArray = (arr, item) => {
-    // add answer at random index inside options list
-    const options = [...arr];
-    options.splice(Math.floor(Math.random() * 4), 0, item);
-
-    return options;
-  };
-
   const incorrectAnswerElements = incorrectAnswers.map((answer) => {
+    const incorrectAnswerClassName = `
+      question-btn 
+      ${selectedAnswer === answer && "question-btn-selected"}
+      ${showAnswer && selectedAnswer === answer && "question-btn-incorrect"}
+      
+    `;
+
     return (
-      <button className="question-btn" key={nanoid()}>
+      <button
+        key={nanoid()}
+        className={incorrectAnswerClassName}
+        onClick={() => {
+          handleSelectAnswer(id, answer);
+        }}
+      >
         {decode(answer)}
       </button>
     );
   });
 
+  const correctAnswerClassName = `
+    question-btn 
+    ${selectedAnswer === correctAnswer && "question-btn-selected"}
+    ${showAnswer && "question-btn-correct"}
+    
+  `;
+
   const correctAnswerElement = (
-    <button className="question-btn" key={nanoid()}>
+    <button
+      key={nanoid()}
+      className={correctAnswerClassName}
+      onClick={() => {
+        handleSelectAnswer(id, correctAnswer);
+      }}
+    >
       {decode(correctAnswer)}
     </button>
   );
 
-  const answerElements = reshuffleArray(
-    incorrectAnswerElements,
-    correctAnswerElement
+  incorrectAnswerElements.push(correctAnswerElement);
+
+  const sortedAnswerElement = incorrectAnswerElements.sort((a, b) =>
+    a.props.children.localeCompare(b.props.children)
   );
 
   return (
     <article className="question-container">
       <h2 className="question-text">{decode(question)}</h2>
-      <div className="answer-list">{answerElements}</div>
+      <div className="answer-list">{sortedAnswerElement}</div>
     </article>
   );
 }
