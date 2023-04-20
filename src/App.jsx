@@ -12,7 +12,6 @@ function App() {
   return (
     <main>
       <img className="top-shape" src={topShape}></img>
-      <img className="bottom-shape" src={bottomShape}></img>
 
       {isGameStarted ? (
         <section className="game-container">
@@ -21,12 +20,14 @@ function App() {
       ) : (
         <section className="game-intro">
           <h1 className="game-title">Quizzical</h1>
-          <p>Play, learn, and conquer</p>
+          <p>Play, learn & conquer</p>
           <button className="btn-primary" onClick={handleGameStart}>
             Start Quiz
           </button>
         </section>
       )}
+
+      <img className="bottom-shape" src={bottomShape}></img>
     </main>
   );
 }

@@ -50,3 +50,9 @@
   background: #94d7a2;
   border: none;
 }
+
+@media screen and (max-width: 760px) {
+  .question-text {
+    font-size: 1.5rem;
+  }
+}

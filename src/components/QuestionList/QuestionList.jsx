@@ -96,25 +96,33 @@ export default function QuestionList({ handleGameStart }) {
   };
 
   return (
-    <section className="question-list-container">
-      {renderedQuestions}
+    <>
+      {renderedQuestions.length === 0 ? (
+        <div className="loading">Quiz is on the way...</div>
+      ) : (
+        <section className="question-list-container">
+          {renderedQuestions}
 
-      <div className="show-result">
-        {isGameOver && (
-          <h3 className="correct-answer">
-            You scored {score}/5 correct answers
-          </h3>
-        )}
+          <div className="show-result">
+            {isGameOver && (
+              <h3 className="correct-answer">
+                You scored {score}/5 correct answers
+              </h3>
+            )}
 
-        <button
-          className={`btn-primary ${
-            showCheckAnswer ? "btn-check-answers" : "btn-check-answers-disabled"
-          }`}
-          onClick={isGameOver ? resetGame : checkAnswer}
-        >
-          {isGameOver ? "Play Again" : "Check Answers"}
-        </button>
-      </div>
-    </section>
+            <button
+              className={`btn-primary ${
+                showCheckAnswer
+                  ? "btn-check-answers"
+                  : "btn-check-answers-disabled"
+              }`}
+              onClick={isGameOver ? resetGame : checkAnswer}
+            >
+              {isGameOver ? "Play Again" : "Check Answers"}
+            </button>
+          </div>
+        </section>
+      )}
+    </>
   );
 }

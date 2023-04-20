@@ -39,3 +39,19 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+@media screen and (max-width: 760px) {
+  .top-shape,
+  .bottom-shape {
+    position: fixed;
+    width: 30vw;
+  }
+
+  .game-container {
+    position: static;
+    top: unset;
+    left: unset;
+    transform: none;
+    padding: 2rem 3rem;
+  }
+}

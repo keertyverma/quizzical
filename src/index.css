@@ -31,12 +31,21 @@ main {
   border-radius: 15px;
   border: 0;
   padding: 1.6rem 5rem;
-  margin: 2.5rem;
+  margin: 2rem;
   letter-spacing: 0.1rem;
   outline: 0;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .btn-primary:active {
   box-shadow: 3px 3px 10px 0 #868fb8;
+}
+
+@media screen and (max-width: 760px) {
+  .btn-primary {
+    font-size: 1.3rem;
+    padding: 1.4rem 3rem;
+    margin: 0.5rem;
+  }
 }
