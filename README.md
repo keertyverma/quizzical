@@ -2,7 +2,7 @@
 
 Quizzical web app let you test your knowledge around Science & Computer category and score players based on their answers.
 
-- Hosted on Netlify -> [Quizzical](keertyverma-quizzical.netlify.app)
+- Hosted on Netlify -> [Quizzical](https://keertyverma-quizzical.netlify.app/)
 - It access trivia questions from the [Open Trivia Database API](https://opentdb.com/)
 
 ## Built with:
