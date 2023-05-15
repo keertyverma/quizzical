@@ -4,12 +4,21 @@ import Question from "../Question/Question";
 import "./QuestionList.css";
 
 export default function QuestionList({ handleGameStart }) {
-  const { questions, setQuestions, error, isLoading, allQuestionsAnswered } =
-    useQuestions();
-
+  const { data, isFetching, error } = useQuestions();
   const [showCheckAnswer, setShowCheckAnswer] = useState(false);
   const [score, setScore] = useState(0);
   const [isGameOver, setIsGameOver] = useState(false);
+  const [questions, setQuestions] = useState([]);
+
+  useEffect(() => {
+    if (data) {
+      setQuestions([...data]);
+    }
+  }, [data]);
+
+  const allQuestionsAnswered = questions?.every((question) => {
+    return question.selectedAnswer !== "";
+  });
 
   useEffect(() => {
     if (allQuestionsAnswered) {
@@ -27,7 +36,8 @@ export default function QuestionList({ handleGameStart }) {
     }
   }, [questions]);
 
-  if (isLoading) return <div className="loading">Quiz is on the way...</div>;
+  if (isFetching) return <div className="loading">Quiz is on the way...</div>;
+
   if (error)
     return (
       <div className="error">
@@ -50,7 +60,7 @@ export default function QuestionList({ handleGameStart }) {
     }
   };
 
-  const renderedQuestions = questions.map((question) => {
+  const renderedQuestions = questions?.map((question) => {
     return (
       <Question
         key={question.id}

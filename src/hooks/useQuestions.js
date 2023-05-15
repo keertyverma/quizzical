@@ -1,49 +1,31 @@
-import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 import { nanoid } from "nanoid";
-import { useEffect, useState } from "react";
+import apiClient from "../services/api-client";
 
-const API_URL = "https://opentdb.com/api.php";
+const fetchQuestions = () =>
+  apiClient
+    .get("/", {
+      params: {
+        amount: 5,
+        category: 18,
+        difficulty: "easy",
+        type: "multiple",
+      },
+    })
+    .then((response) =>
+      response.data.results.map((question) => ({
+        ...question,
+        id: nanoid(),
+        selectedAnswer: "",
+        showAnswer: false,
+      }))
+    );
 
-const useQuestions = () => {
-  const [questions, setQuestions] = useState([]);
-  const [error, setError] = useState("");
-  const [isLoading, setLoading] = useState(false);
-
-  const allQuestionsAnswered = questions.every((question) => {
-    return question.selectedAnswer !== "";
+const useQuestions = () =>
+  useQuery({
+    queryKey: ["questions"],
+    queryFn: fetchQuestions,
+    refetchOnWindowFocus: false,
   });
-
-  useEffect(() => {
-    setLoading(true);
-    axios
-      .get(API_URL, {
-        params: {
-          amount: 5,
-          category: 18,
-          difficulty: "easy",
-          type: "multiple",
-        },
-      })
-      .then((response) => {
-        setQuestions(
-          response.data.results.map((question) => {
-            return {
-              ...question,
-              id: nanoid(),
-              selectedAnswer: "",
-              showAnswer: false,
-            };
-          })
-        );
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError(err.message);
-        setLoading(false);
-      });
-  }, []);
-
-  return { questions, setQuestions, error, isLoading, allQuestionsAnswered };
-};
 
 export default useQuestions;
