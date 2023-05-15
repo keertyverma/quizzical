@@ -29,7 +29,8 @@
 
 .question-btn-selected {
   border: none;
-  background-color: #d6dbf5;
+  background-color: #52819d;
+  color: #f5f7fb;
 }
 
 .answer-list {
@@ -42,12 +43,16 @@
 
 .question-btn-incorrect {
   background: #f8bcbc;
-  border: none;
   opacity: 0.5;
 }
 
 .question-btn-correct {
   background: #94d7a2;
+}
+
+.question-btn-incorrect,
+.question-btn-correct {
+  color: #293264;
   border: none;
 }
 

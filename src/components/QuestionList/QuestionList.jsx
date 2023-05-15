@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Confetti from "react-confetti";
 import useQuestions from "../../hooks/useQuestions";
 import Question from "../Question/Question";
 import "./QuestionList.css";
@@ -103,7 +104,16 @@ export default function QuestionList({ handleGameStart }) {
       <div className="show-result">
         {isGameOver && (
           <h3 className="correct-answer">
-            You scored {score}/5 correct answers
+            You scored {score}/5 correct answers.
+            {score === 5 ? (
+              <>
+                🥳🙌 <Confetti />
+              </>
+            ) : score >= 3 ? (
+              "✌️😎"
+            ) : (
+              <p>Let's play again ✨</p>
+            )}
           </h3>
         )}
 

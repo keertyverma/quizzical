@@ -1,5 +1,5 @@
-import { nanoid } from "nanoid";
 import { decode } from "html-entities";
+import { nanoid } from "nanoid";
 import "./Question.css";
 
 export default function Question({
@@ -16,7 +16,6 @@ export default function Question({
       question-btn 
       ${selectedAnswer === answer && "question-btn-selected"}
       ${showAnswer && selectedAnswer === answer && "question-btn-incorrect"}
-      
     `;
 
     return (
