@@ -4,6 +4,7 @@ import "./Question.css";
 
 export default function Question({
   id,
+  questionNumber,
   question,
   correctAnswer,
   incorrectAnswers,
@@ -58,7 +59,11 @@ export default function Question({
 
   return (
     <article className="question-container">
-      <h2 className="question-text">{decode(question)}</h2>
+      <h2 className="question-text">
+        {questionNumber}
+        {". "}
+        {decode(question)}
+      </h2>
       <div className="answer-list">{sortedAnswerElement}</div>
     </article>
   );

@@ -61,11 +61,12 @@ export default function QuestionList({ handleGameStart }) {
     }
   };
 
-  const renderedQuestions = questions?.map((question) => {
+  const renderedQuestions = questions?.map((question, index) => {
     return (
       <Question
         key={question.id}
         id={question.id}
+        questionNumber={index + 1}
         question={question.question}
         correctAnswer={question.correct_answer}
         incorrectAnswers={question.incorrect_answers}
