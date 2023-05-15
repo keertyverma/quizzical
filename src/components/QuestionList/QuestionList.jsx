@@ -1,33 +1,15 @@
-import "./QuestionList.css";
 import { useEffect, useState } from "react";
-import { nanoid } from "nanoid";
-import getQuestions from "../../hooks/get-questions";
+import useQuestions from "../../hooks/useQuestions";
 import Question from "../Question/Question";
+import "./QuestionList.css";
 
 export default function QuestionList({ handleGameStart }) {
-  const [questions, setQuestions] = useState([]);
+  const { questions, setQuestions, error, isLoading, allQuestionsAnswered } =
+    useQuestions();
+
   const [showCheckAnswer, setShowCheckAnswer] = useState(false);
   const [score, setScore] = useState(0);
   const [isGameOver, setIsGameOver] = useState(false);
-
-  const allQuestionsAnswered = questions.every((question) => {
-    return question.selectedAnswer !== "";
-  });
-
-  useEffect(() => {
-    getQuestions().then((questions) =>
-      setQuestions(
-        questions.map((question) => {
-          return {
-            ...question,
-            id: nanoid(),
-            selectedAnswer: "",
-            showAnswer: false,
-          };
-        })
-      )
-    );
-  }, []);
 
   useEffect(() => {
     if (allQuestionsAnswered) {
@@ -44,6 +26,15 @@ export default function QuestionList({ handleGameStart }) {
       setShowCheckAnswer(false);
     }
   }, [questions]);
+
+  if (isLoading) return <div className="loading">Quiz is on the way...</div>;
+  if (error)
+    return (
+      <div className="error">
+        Something went wrong. <br />
+        Please try again later.
+      </div>
+    );
 
   const handleSelectAnswer = (questionId, answer) => {
     if (!isGameOver) {
@@ -96,33 +87,25 @@ export default function QuestionList({ handleGameStart }) {
   };
 
   return (
-    <>
-      {renderedQuestions.length === 0 ? (
-        <div className="loading">Quiz is on the way...</div>
-      ) : (
-        <section className="question-list-container">
-          {renderedQuestions}
+    <section className="question-list-container">
+      {renderedQuestions}
 
-          <div className="show-result">
-            {isGameOver && (
-              <h3 className="correct-answer">
-                You scored {score}/5 correct answers
-              </h3>
-            )}
+      <div className="show-result">
+        {isGameOver && (
+          <h3 className="correct-answer">
+            You scored {score}/5 correct answers
+          </h3>
+        )}
 
-            <button
-              className={`btn-primary ${
-                showCheckAnswer
-                  ? "btn-check-answers"
-                  : "btn-check-answers-disabled"
-              }`}
-              onClick={isGameOver ? resetGame : checkAnswer}
-            >
-              {isGameOver ? "Play Again" : "Check Answers"}
-            </button>
-          </div>
-        </section>
-      )}
-    </>
+        <button
+          className={`btn-primary ${
+            showCheckAnswer ? "btn-check-answers" : "btn-check-answers-disabled"
+          }`}
+          onClick={isGameOver ? resetGame : checkAnswer}
+        >
+          {isGameOver ? "Play Again" : "Check Answers"}
+        </button>
+      </div>
+    </section>
   );
 }
