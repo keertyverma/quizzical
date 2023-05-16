@@ -19,7 +19,7 @@ export default function QuestionList({
     if (data && data.length !== 0) {
       setQuestions([...data]);
       handleNoQuestionsError(false);
-    } else {
+    } else if (!isFetching) {
       handleNoQuestionsError(true);
       handleGameStart();
     }

@@ -5,6 +5,7 @@ import apiClient from "../services/api-client";
 const fetchQuestions = (gameOptions) => {
   const { category, difficulty } = gameOptions;
 
+  // Default quiz options: category = computer and difficulty = easy
   return apiClient
     .get("/", {
       params: {
