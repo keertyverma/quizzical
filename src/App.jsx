@@ -7,6 +7,10 @@ import QuizForm from "./components/QuizForm/QuizForm";
 
 function App() {
   const [isGameStarted, setGameStarted] = useState(false);
+  const [gameOptions, setGameOptions] = useState({
+    category: "",
+    difficulty: "",
+  });
 
   const handleGameStart = () => setGameStarted((prevState) => !prevState);
 
@@ -16,13 +20,21 @@ function App() {
 
       {isGameStarted ? (
         <section className="game-container">
-          <QuestionList handleGameStart={handleGameStart} />
+          <QuestionList
+            gameOptions={gameOptions}
+            handleGameStart={handleGameStart}
+          />
         </section>
       ) : (
         <section className="game-intro">
           <h1 className="game-title">Quizzical</h1>
           <p>Play, learn & conquer</p>
-          <QuizForm gameStart={handleGameStart} />
+          <QuizForm
+            onGameStart={(options) => {
+              setGameOptions({ ...gameOptions, ...options });
+              handleGameStart();
+            }}
+          />
         </section>
       )}
 

@@ -1,13 +1,25 @@
+import { useForm } from "react-hook-form";
 import "./QuizForm.css";
 
-function QuizForm({ gameStart }) {
+function QuizForm({ onGameStart }) {
+  const { register, handleSubmit, reset } = useForm();
+
   return (
-    <form>
+    <form
+      onSubmit={handleSubmit((data) => {
+        onGameStart(data);
+        reset();
+      })}
+    >
       <div className="form-field">
         <label htmlFor="category" className="form-label">
           Category:
         </label>
-        <select id="category" className="form-control">
+        <select
+          {...register("category")}
+          id="category"
+          className="form-control"
+        >
           <option value="any">Any Category</option>
           <option value="9">General Knowledge</option>
           <option value="10">Books</option>
@@ -39,7 +51,11 @@ function QuizForm({ gameStart }) {
         <label htmlFor="difficulty" className="form-label">
           Difficulty:
         </label>
-        <select id="difficulty" className="form-control">
+        <select
+          {...register("difficulty")}
+          id="difficulty"
+          className="form-control"
+        >
           <option value="any">Any Difficulty</option>
           <option value="easy">Easy</option>
           <option value="medium">Medium</option>

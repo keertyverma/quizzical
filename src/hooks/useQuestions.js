@@ -2,13 +2,15 @@ import { useQuery } from "@tanstack/react-query";
 import { nanoid } from "nanoid";
 import apiClient from "../services/api-client";
 
-const fetchQuestions = () =>
-  apiClient
+const fetchQuestions = (gameOptions) => {
+  const { category, difficulty } = gameOptions;
+
+  return apiClient
     .get("/", {
       params: {
         amount: 5,
-        category: 18,
-        difficulty: "easy",
+        category: category && category !== "any" ? category : 18,
+        difficulty: difficulty && difficulty !== "any" ? difficulty : "easy",
         type: "multiple",
       },
     })
@@ -20,11 +22,12 @@ const fetchQuestions = () =>
         showAnswer: false,
       }))
     );
+};
 
-const useQuestions = () =>
+const useQuestions = (gameOptions) =>
   useQuery({
     queryKey: ["questions"],
-    queryFn: fetchQuestions,
+    queryFn: () => fetchQuestions(gameOptions),
     refetchOnWindowFocus: false,
   });
 

@@ -4,8 +4,8 @@ import useQuestions from "../../hooks/useQuestions";
 import Question from "../Question/Question";
 import "./QuestionList.css";
 
-export default function QuestionList({ handleGameStart }) {
-  const { data, isFetching, error } = useQuestions();
+export default function QuestionList({ gameOptions, handleGameStart }) {
+  const { data, isFetching, error } = useQuestions(gameOptions);
   const [showCheckAnswer, setShowCheckAnswer] = useState(false);
   const [score, setScore] = useState(0);
   const [isGameOver, setIsGameOver] = useState(false);
