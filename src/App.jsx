@@ -3,6 +3,7 @@ import { useState } from "react";
 import topShape from "./assets/images/top-shape.png";
 import bottomShape from "./assets/images/bottom-shape.png";
 import QuestionList from "./components/QuestionList/QuestionList";
+import QuizForm from "./components/QuizForm/QuizForm";
 
 function App() {
   const [isGameStarted, setGameStarted] = useState(false);
@@ -21,9 +22,7 @@ function App() {
         <section className="game-intro">
           <h1 className="game-title">Quizzical</h1>
           <p>Play, learn & conquer</p>
-          <button className="btn-primary" onClick={handleGameStart}>
-            Start Quiz
-          </button>
+          <QuizForm gameStart={handleGameStart} />
         </section>
       )}
 
