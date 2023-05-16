@@ -32,7 +32,7 @@ function App() {
       ) : (
         <section className="game-intro">
           <h1 className="game-title">Quizzical</h1>
-          <p>Play, learn & conquer</p>
+          <p>Play, Learn & Conquer</p>
           {showError && (
             <h2 className="question-error">
               Oops! We couldn't find any questions with the selected options!
