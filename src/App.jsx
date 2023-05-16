@@ -4,6 +4,7 @@ import topShape from "./assets/images/top-shape.png";
 import bottomShape from "./assets/images/bottom-shape.png";
 import QuestionList from "./components/QuestionList/QuestionList";
 import QuizForm from "./components/QuizForm/QuizForm";
+import { BsTwitter, BsLinkedin, BsGithub } from "react-icons/bs";
 
 function App() {
   const [isGameStarted, setGameStarted] = useState(false);
@@ -30,22 +31,44 @@ function App() {
           />
         </section>
       ) : (
-        <section className="game-intro">
-          <h1 className="game-title">Quizzical</h1>
-          <p>Play, Learn & Conquer</p>
-          {showError && (
-            <h2 className="question-error">
-              Oops! We couldn't find any questions with the selected options!
-            </h2>
-          )}
-          <QuizForm
-            onGameStart={(options) => {
-              setGameOptions({ ...gameOptions, ...options });
-              setError(false);
-              handleGameStart();
-            }}
-          />
-        </section>
+        <>
+          <section className="game-intro">
+            <h1 className="game-title">Quizzical</h1>
+            <p>Play, Learn & Conquer</p>
+            {showError && (
+              <h2 className="question-error">
+                Oops! We couldn't find any questions with the selected options!
+              </h2>
+            )}
+            <QuizForm
+              onGameStart={(options) => {
+                setGameOptions({ ...gameOptions, ...options });
+                setError(false);
+                handleGameStart();
+              }}
+            />
+          </section>
+          <footer>
+            <p>Made with 💖 by Keerty👩‍💻</p>
+            <ul>
+              <a href="https://github.com/keertyverma">
+                <li>
+                  <BsGithub size={15} />
+                </li>
+              </a>
+              <a href="https://www.linkedin.com/in/keertyverma/">
+                <li>
+                  <BsLinkedin size={15} />
+                </li>
+              </a>
+              <a href="https://twitter.com/KeertyVerma">
+                <li>
+                  <BsTwitter size={15} />
+                </li>
+              </a>
+            </ul>
+          </footer>
+        </>
       )}
 
       <img className="bottom-shape" src={bottomShape}></img>

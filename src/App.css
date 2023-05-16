@@ -18,7 +18,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 90vh;
 }
 
 .game-title {
@@ -27,7 +27,7 @@
   font-size: 4rem;
 }
 
-.game-intro p {
+.game-intro > p {
   font-size: 2rem;
   margin: 1rem;
 }
@@ -48,6 +48,31 @@
   text-align: center;
 }
 
+/* Footer */
+footer p {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-top: 0;
+  opacity: 0.8;
+}
+
+a {
+  color: gray;
+}
+
+a:hover {
+  color: #293264;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
 @media screen and (max-width: 760px) {
   .top-shape,
   .bottom-shape {
@@ -65,5 +90,9 @@
 
   .question-error {
     font-size: 1.2rem;
+  }
+
+  footer p {
+    font-size: 1.3rem;
   }
 }

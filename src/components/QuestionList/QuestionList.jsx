@@ -45,7 +45,13 @@ export default function QuestionList({
     }
   }, [questions]);
 
-  if (isFetching) return <div className="loading">Quiz is on the way...</div>;
+  if (isFetching)
+    return (
+      <div className="loading">
+        Are you ready? <br />
+        Quiz is on the way...
+      </div>
+    );
 
   if (error)
     return (
