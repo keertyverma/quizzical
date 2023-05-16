@@ -4,7 +4,11 @@ import useQuestions from "../../hooks/useQuestions";
 import Question from "../Question/Question";
 import "./QuestionList.css";
 
-export default function QuestionList({ gameOptions, handleGameStart }) {
+export default function QuestionList({
+  gameOptions,
+  handleGameStart,
+  handleNoQuestionsError,
+}) {
   const { data, isFetching, error } = useQuestions(gameOptions);
   const [showCheckAnswer, setShowCheckAnswer] = useState(false);
   const [score, setScore] = useState(0);
@@ -12,8 +16,12 @@ export default function QuestionList({ gameOptions, handleGameStart }) {
   const [questions, setQuestions] = useState([]);
 
   useEffect(() => {
-    if (data) {
+    if (data && data.length !== 0) {
       setQuestions([...data]);
+      handleNoQuestionsError(false);
+    } else {
+      handleNoQuestionsError(true);
+      handleGameStart();
     }
   }, [data]);
 

@@ -11,8 +11,11 @@ function App() {
     category: "",
     difficulty: "",
   });
+  const [showError, setError] = useState(false);
 
   const handleGameStart = () => setGameStarted((prevState) => !prevState);
+
+  const handleNoQuestionsError = (boolean) => setError(boolean);
 
   return (
     <main>
@@ -23,15 +26,22 @@ function App() {
           <QuestionList
             gameOptions={gameOptions}
             handleGameStart={handleGameStart}
+            handleNoQuestionsError={handleNoQuestionsError}
           />
         </section>
       ) : (
         <section className="game-intro">
           <h1 className="game-title">Quizzical</h1>
           <p>Play, learn & conquer</p>
+          {showError && (
+            <h2 className="question-error">
+              Oops! We couldn't find any questions with the selected options!
+            </h2>
+          )}
           <QuizForm
             onGameStart={(options) => {
               setGameOptions({ ...gameOptions, ...options });
+              setError(false);
               handleGameStart();
             }}
           />
