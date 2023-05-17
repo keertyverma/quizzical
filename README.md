@@ -24,7 +24,7 @@ Quizzical web app let you test your knowledge around multiple categories like sc
 
 ### Mobile Screen
 
-<img src="https://github.com/keertyverma/quizzical/assets/13656449/b7d2259e-7dd6-42b8-bc80-eedf8b4d4dd5" width=40% height=40%>
+<img src="https://github.com/keertyverma/quizzical/assets/13656449/b7d2259e-7dd6-42b8-bc80-eedf8b4d4dd5" width=40% height=40% alt="mobile-version">
 
 ![quizzical-mobile_(1)](https://user-images.githubusercontent.com/13656449/233291539-6d9bd573-2b42-420c-976b-bd4cc9d66521.png)
 ![quizzical-mobile_(2)](https://user-images.githubusercontent.com/13656449/233291632-e87bc66b-311f-4d5e-949a-f4d83f0a95fa.png)

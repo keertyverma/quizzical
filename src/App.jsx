@@ -20,7 +20,7 @@ function App() {
 
   return (
     <main>
-      <img className="top-shape" src={topShape}></img>
+      <img className="top-shape" src={topShape} alt="top-shape"></img>
 
       {isGameStarted ? (
         <section className="game-container">
@@ -51,27 +51,27 @@ function App() {
           <footer>
             <p>Made with 💖 by Keerty👩‍💻</p>
             <ul>
-              <a href="https://github.com/keertyverma">
-                <li>
+              <li>
+                <a href="https://github.com/keertyverma">
                   <BsGithub size={15} />
-                </li>
-              </a>
-              <a href="https://www.linkedin.com/in/keertyverma/">
-                <li>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/in/keertyverma/">
                   <BsLinkedin size={15} />
-                </li>
-              </a>
-              <a href="https://twitter.com/KeertyVerma">
-                <li>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/KeertyVerma">
                   <BsTwitter size={15} />
-                </li>
-              </a>
+                </a>
+              </li>
             </ul>
           </footer>
         </>
       )}
 
-      <img className="bottom-shape" src={bottomShape}></img>
+      <img className="bottom-shape" src={bottomShape} alt="bottom-shape"></img>
     </main>
   );
 }
